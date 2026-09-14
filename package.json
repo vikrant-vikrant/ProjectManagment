@@ -1,0 +1,20 @@
+{
+  "name": "projectmangment",
+  "version": "1.0.0",
+  "description": "a project managment application for beginners",
+  "keywords": [
+    "backend",
+    "API",
+    "creation"
+  ],
+  "license": "ISC",
+  "author": "Vikrant",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "devDependencies": {
+    "prettier": "3.9.6"
+  }
+}
