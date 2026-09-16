@@ -1,17 +1,13 @@
 import dotenv from "dotenv";
-import express from "express";
+// import express from "express";
+import app from "./app.js"
 //use improt for type module
 //use require for type commonjs
 dotenv.config({
-  path: "./.env",
+  path: "../.env",
 });
-const app = express();
 const port = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port https//localhost:${port}`);
 });
