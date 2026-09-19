@@ -17,8 +17,7 @@ app.use(
   }),
 );
 app.get("/", (req, res) => {
-  // res.send("welcome home");
-  res.send(res.status);
+  res.send("welcome home");
 
 });
 app.get("/about", (req, res) => {
