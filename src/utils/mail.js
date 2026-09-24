@@ -1,4 +1,3 @@
-import { submit } from "@gradio/client";
 import Mailgen from "mailgen";
 import nodemailer from "nodemailer";
 
