@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+import { log } from "console";
 const userSchema = new Schema({
   avata: {
     type: { url: String, localPath: String },
@@ -50,12 +51,16 @@ const userSchema = new Schema({
   emailVerificationToken: {
     type: String,
   },
+  emailVerificationExpiry: {
+    type: String,
+  },
 });
 
-userSchema.pre("save", async function (next) {
-  if (!this.idModified("password")) return next();
+userSchema.pre("save", async function () {
+  // userSchema.pre("save", async function (next) {
+  // if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);
-  next();
+  // next();
 });
 
 userSchema.methods.isPasswordCorrect = async function (password) {
@@ -85,15 +90,15 @@ userSchema.methods.generateRefreshToken = function () {
 };
 
 userSchema.methods.generateTemporaryToken = function () {
-  const unHasedToken = crypto.randomBytes(20).toString("hex");
+  const unHashedToken = crypto.randomBytes(20).toString("hex");
 
   const hashedToken = crypto
     .createHash("sha256")
-    .update(unhasedToken)
+    .update(unHashedToken)
     .digest("hex");
 
   const tokenExpiry = Date.now() + 20 * 60 * 1000; //20 mins
-  return { unHasedToken, hashedToken, tokenExpiry };
+  return { unHashedToken, hashedToken, tokenExpiry };
 };
 
 export const User = mongoose.model("User", userSchema);
