@@ -1,9 +1,6 @@
 import dotenv from "dotenv";
-// import express from "express";
 import app from "./app.js";
 import connectDB from "../src/db/index.js";
-//use improt for type module
-//use require for type commonjs
 dotenv.config({
   path: "../.env",
 });
